@@ -1,70 +1,89 @@
-# 🚀 Proyectos con Databricks y Spark en Scala
+# 🚀 Databricks: Análisis de Datos con Apache Spark
 
-¡Bienvenido a este repositorio! Aquí encontrarás una colección de pequeños proyectos desarrollados en **Databricks**, utilizando **Apache Spark** con **Scala**. Este espacio está dedicado a la exploración y experimentación con el ecosistema de big data, procesamiento distribuido y optimización de datos.
-
-## 📌 ¿Qué encontrarás en este repositorio?
-
-Cada proyecto aborda distintos aspectos del uso de **Spark en Databricks**, incluyendo:
-
-- 🚀 **Procesamiento de datos con Spark**: Transformaciones, acciones y optimización de DataFrames.
-- 📊 **Carga y análisis de datos**: Lectura y escritura de diferentes formatos como CSV, JSON, Parquet, etc.
-- 🔥 **Optimización de rendimiento**: Uso de particionamiento, cacheo y tuning de Spark.
-- 🛠 **Integración con Databricks**: Configuración de entornos, uso de notebooks y ejecución de scripts.
-- 🤖 **Aplicaciones en ciencia de datos**: Implementación de algoritmos y análisis en grandes volúmenes de datos.
-
-## 🛠 Tecnologías utilizadas
-
-- **Apache Spark** 🏎️: Motor de procesamiento distribuido para Big Data.
-- **Scala** 🦾: Lenguaje de programación funcional y orientado a objetos.
-- **Databricks** ☁️: Plataforma para análisis de datos en la nube.
-- **Delta Lake** 🛑: Tecnología de almacenamiento optimizado para procesamiento de datos.
-- **MLlib** 🤖 (en proyectos de machine learning): Librería de Spark para aprendizaje automático.
-
-## 📂 Estructura del repositorio
-
-La estructura del repositorio sigue una organización modular para facilitar la exploración de cada proyecto:
-
-```
-📦 databricks
- ┣ 📂 Scala
- ┃ ┣ 📂 01_Proceso ETL
- ┃ ┣ ┣ 📂 Data
- ┃ ┣ ┣  ┣ 📜 RIESGO_CREDITICIO.csv
- ┃ ┣ ┣  ┣ 📜 transacciones_bancarias.json
- ┃ ┣ ┣ 📂 Solucionario
- ┃ ┣ ┣  ┣ 📜 Solucionario_Reto ETL.dbc
- ┃ ┣ ┣  ┣ 📜 Solucionario_Reto ETL.html
- ┃ ┣ ┣  ┣ 📜 Solucionario_Reto ETL.scala
- ┃ ┣ ┣ 📜 Reto_Proceso_ETL.pdf
- ┗ 📜 README.md
-```
-
-Cada carpeta contiene scripts en **Scala**, notebooks, y un pequeño README con detalles sobre su contenido.
-
-## 🚀 Cómo empezar
-
-Si quieres probar los ejemplos en **Databricks**, sigue estos pasos:
-
-1. **Clona el repositorio**:
-   ```bash
-   git clone https://github.com/SmitVR0095/Databricks.git
-   ```
-2. **Importa los notebooks en Databricks**:
-   - Ve a la sección de Notebooks en Databricks.
-   - Selecciona "Importar" y carga los archivos desde el directorio del repositorio.
-3. **Ejecuta los scripts**:
-   - Asegúrate de configurar correctamente el entorno de ejecución en Databricks.
-   - Ejecuta los comandos y explora los resultados.
-
-## 📢 Contribuciones
-
-Este es un repositorio en constante evolución. Si tienes ideas, mejoras o quieres aportar nuevos ejemplos, siéntete libre de hacer un **fork** y enviar un **pull request**. ¡Toda contribución es bienvenida! 🚀
-
-## 📜 Licencia
-
-Este proyecto está bajo la licencia **MIT**, lo que significa que puedes usar, modificar y compartir el código libremente.
+Databricks es una plataforma de análisis de datos basada en la nube que permite el procesamiento de grandes volúmenes de datos mediante Apache Spark. Proporciona un entorno colaborativo para científicos de datos, ingenieros de datos y analistas, facilitando la creación, ejecución y gestión de flujos de trabajo de datos y modelos de machine learning.
 
 ---
 
-📌 *Si este repositorio te resulta útil, no olvides darle una ⭐ en GitHub!* 😃
+## 🏗️ Arquitectura de Databricks con Apache Spark
+
+### 🔍 Visión General
+Databricks se basa en Apache Spark, un motor de procesamiento distribuido optimizado para el manejo de grandes volúmenes de datos. Su arquitectura incluye los siguientes componentes clave:
+
+![Arquitectura de Databricks con Apache Spark](https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Apache_Spark_logo.svg/1200px-Apache_Spark_logo.svg.png)
+
+1. **Cluster de Apache Spark** 🔥
+   - Databricks gestiona automáticamente la creación y escalado de clústeres de Spark.
+   - Se ejecutan en servicios en la nube como AWS, Azure y Google Cloud.
+   - Configuración flexible de nodos de trabajo y controladores.
+
+2. **Databricks Workspace** 🖥️
+   - Entorno colaborativo donde los usuarios pueden desarrollar y compartir notebooks.
+   - Soporta múltiples lenguajes como Python, Scala, SQL y R.
+
+3. **Databricks File System (DBFS)** 🗄️
+   - Sistema de almacenamiento distribuido basado en Apache Spark.
+   - Facilita la gestión de archivos para la ingesta y procesamiento de datos.
+
+4. **Motor de Ejecución de Spark** ⚙️
+   - Utiliza RDDs (Resilient Distributed Datasets) y DataFrames para el procesamiento paralelo.
+   - Optimización mediante Catalyst Optimizer y Tungsten Engine.
+
+---
+
+## 🛠️ Uso de Apache Spark en Databricks
+
+### 1️⃣ Spark SQL (🔷 SQL sobre Spark)
+   - Permite ejecutar consultas SQL sobre grandes volúmenes de datos.
+   - Se pueden crear vistas y tablas temporales para su análisis.
+   - 📌 **Ejemplo:**
+
+   ```sql
+   CREATE OR REPLACE TEMP VIEW ventas AS
+   SELECT producto, SUM(ventas) as total_ventas
+   FROM tabla_ventas
+   GROUP BY producto;
+   
+   SELECT * FROM ventas;
+   ```
+
+### 2️⃣ PySpark (🐍 Apache Spark con Python)
+   - Ideal para trabajar con DataFrames y Machine Learning.
+   - 📌 **Ejemplo:**
+
+   ```python
+   from pyspark.sql import SparkSession
+   from pyspark.sql.functions import col
+
+   spark = SparkSession.builder.appName("EjemploPySpark").getOrCreate()
+
+   df = spark.read.csv("/databricks-datasets/ventas.csv", header=True, inferSchema=True)
+   df_filtered = df.filter(col("ventas") > 1000)
+   df_filtered.show()
+   ```
+
+### 3️⃣ Spark con Scala (🔴 Scala + Spark)
+   - Scala es el lenguaje nativo de Apache Spark y ofrece mejor rendimiento que PySpark.
+   - 📌 **Ejemplo:**
+
+   ```scala
+   import org.apache.spark.sql.SparkSession
+   import org.apache.spark.sql.functions._
+
+   val spark = SparkSession.builder.appName("EjemploScala").getOrCreate()
+   val df = spark.read.option("header", "true").csv("/databricks-datasets/ventas.csv")
+   val df_filtered = df.filter(col("ventas") > 1000)
+   df_filtered.show()
+   ```
+
+---
+
+## ✅ Conclusión
+Databricks es una plataforma poderosa para el análisis de datos en la nube basada en Apache Spark. Permite a los equipos trabajar con grandes volúmenes de datos utilizando SQL, Python (PySpark) y Scala de manera eficiente, aprovechando la escalabilidad y el procesamiento distribuido de Spark.
+
+📌 **¿Listo para empezar?** Explora Databricks y potencia tu análisis de datos con Spark. 🚀
+
+📖 **Más información:**
+- 🔗 [Documentación Oficial de Databricks](https://docs.databricks.com/)
+- 🔗 [Guía de Apache Spark](https://spark.apache.org/docs/latest/)
+
 
