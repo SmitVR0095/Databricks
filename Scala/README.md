@@ -25,8 +25,10 @@ Cada proyecto aborda distintos aspectos del uso de **Spark en Databricks**, incl
 La estructura del repositorio sigue una organización modular para facilitar la exploración de cada proyecto:
 
 ```
-📦 databricks
+📦 Databricks
  ┣ 📂 Scala
+ ┃ ┣ 📂 00_Intrucción
+ ┃ ┣ ┣ 📜 README.md
  ┃ ┣ 📂 01_Proceso ETL
  ┃ ┣ ┣ 📂 Data
  ┃ ┣ ┣  ┣ 📜 RIESGO_CREDITICIO.csv
